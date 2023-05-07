@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Dialog" name="GUI 2" cloudDestinationProperty="GUI 2" layout="BoxLayout" boxLayoutAxis="Y" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="TableLayout" tableLayoutRows="3" tableLayoutColumns="2" >
+    <component type="Label" name="Label" cloudDestinationProperty="Label" text="Name" >
+    </component>
+    <component type="TextField" name="usename" cloudBoundProperty="text" cloudDestinationProperty="usename" text="" growByContent="false" >
+    </component>
+    <component type="Label" name="Label1" cloudDestinationProperty="Label1" text="Password" >
+    </component>
+    <component type="TextField" name="password" cloudBoundProperty="text" cloudDestinationProperty="password" text="" growByContent="false" constraint="65536" >
+    </component>
+  </component>
+  <component type="Container" name="Container1" cloudDestinationProperty="Container1" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="2" >
+    <component type="Button" name="login" cloudDestinationProperty="login" text="Login" >
+    </component>
+    <component type="Button" name="retour" cloudDestinationProperty="cancel" text="Cancel" >
+    </component>
+  </component>
+  <component type="Container" name="Container2" cloudDestinationProperty="Container2" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
+    <component type="InfiniteProgress" name="InfiniteProgress" cloudDestinationProperty="InfiniteProgress" >
+    </component>
+  </component>
+  <component type="Container" name="Container3" cloudDestinationProperty="Container3" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
+    <component type="Button" name="Button" cloudDestinationProperty="Button" text="Login as guest" >
+    </component>
+  </component>
+</component>

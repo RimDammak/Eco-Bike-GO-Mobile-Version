@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Form" name="GUI 1" cloudDestinationProperty="GUI 1" layout="BorderLayout" borderLayoutAbsoluteCenter="true" title="App Name" >
+  <component type="Container" name="Container" cloudDestinationProperty="Container" layout="BoxLayout" boxLayoutAxis="Y" >
+    <layoutConstraint value="South" />
+    <component type="Container" name="Container2" cloudDestinationProperty="Container2" scrollVisible="false" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
+      <component type="InfiniteProgress" name="InfiniteProgress" cloudDestinationProperty="InfiniteProgress" >
+      </component>
+    </component>
+    <component type="Container" name="Container3" cloudDestinationProperty="Container3" layout="FlowLayout" flowLayoutFillRows="false" flowLayoutAlign="4" flowLayoutValign="0" >
+      <component type="Label" name="Label" cloudDestinationProperty="Label" text="Loading Please Wait" >
+      </component>
+    </component>
+  </component>
+  <component type="Container" name="Container1" cloudDestinationProperty="Container1" >
+    <layoutConstraint value="Center" />
+    <component type="Label" name="Label1" cloudDestinationProperty="Label1" text="Your Logo Here" >
+    </component>
+  </component>
+</component>

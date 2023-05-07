@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component type="Container" name="GUI 3" cloudDestinationProperty="GUI 3" focusable="false" rtl="false" scrollableX="true" layout="FlowLayout" flowLayoutFillRows="true" flowLayoutAlign="1" flowLayoutValign="0" >
+  <component type="ImageViewer" name="ImageViewer" cloudDestinationProperty="ImageViewer" >
+    <custom name="image" type="com.codename1.ui.Image" value="1.jpg" />
+  </component>
+</component>
