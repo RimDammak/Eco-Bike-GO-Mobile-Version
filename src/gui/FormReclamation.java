@@ -24,12 +24,14 @@ public class FormReclamation extends Form{
      public FormReclamation(Form previous) {
         setTitle("Liste Reclamations");
         setLayout(BoxLayout.y());
-        TextField tfRech = new TextField("", "Rrchercher par etat");
+        TextField etatRecherche = new TextField("", "Rrchercher par etat");
+        TextField typeRecherche = new TextField("", "Rrchercher par type");
         Button recherche = new Button("Rechercher");
 
         recherche.setUIID("LoginButton");
 
-        add(tfRech);
+        add(etatRecherche);
+        add(typeRecherche);
         add(recherche);
 
         Button btnValider = new Button("Ajouter une reclamation");
@@ -45,15 +47,37 @@ public class FormReclamation extends Form{
             ArrayList<Reclamation> newrec = new ArrayList<>();
             for (Reclamation r : tasks) {
 
-                if (r.getImage().toLowerCase().indexOf(tfRech.getText().toLowerCase()) != -1) {
-                    newrec.add(r);
+                if (r.getImage().toLowerCase().indexOf(typeRecherche.getText().toLowerCase()) != -1) {
+                    if (r.getEtatRec().toLowerCase().indexOf(etatRecherche.getText().toLowerCase()) != -1) {
+                        newrec.add(r);
+                    }
                 }
 
             }
 
             revalidate();
             removeAll();
-            add(tfRech);
+            add(etatRecherche);
+            add(typeRecherche);
+            add(recherche);
+            Display(newrec);
+        });        
+        recherche.addActionListener((e) -> {
+            ArrayList<Reclamation> newrec = new ArrayList<>();
+            for (Reclamation r : tasks) {
+
+                if (r.getImage().toLowerCase().indexOf(typeRecherche.getText().toLowerCase()) != -1) {
+                    if (r.getEtatRec().toLowerCase().indexOf(etatRecherche.getText().toLowerCase()) != -1) {
+                        newrec.add(r);
+                    }
+                }
+
+            }
+
+            revalidate();
+            removeAll();
+            add(etatRecherche);
+            add(typeRecherche);
             add(recherche);
             Display(newrec);
         });        
