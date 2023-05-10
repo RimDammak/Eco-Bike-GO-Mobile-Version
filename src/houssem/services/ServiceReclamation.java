@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  *
- * @author houss
+ * @author damak
  */
 public class ServiceReclamation {
     public ArrayList<Reclamation> tasks;

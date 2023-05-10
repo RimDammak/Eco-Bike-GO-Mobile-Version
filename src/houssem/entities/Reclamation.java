@@ -6,7 +6,7 @@ package houssem.entities;
 
 /**
  *
- * @author houss
+ * @author damak
  */
 public class Reclamation {
     private int idRec;
