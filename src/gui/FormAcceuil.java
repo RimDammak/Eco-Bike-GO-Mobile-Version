@@ -22,7 +22,11 @@ import static ecobikego.MyApplication.theme;
  */
 public class FormAcceuil extends Form{
     public FormAcceuil(Form previous){
-        setUIID("Formacc");
+        GetUserForm hi = new GetUserForm();
+        
+        setUIID("Formacc");//formtaswira
+        Home fee=new Home(this);
+       // FormMesRV fe=new FormMesRV(this);
         FormStation f1 = new FormStation();
         UIBuilder.registerCustomComponent("ImageViewer", ImageViewer.class);       
         setTitle("Acceuil");
@@ -32,33 +36,47 @@ public class FormAcceuil extends Form{
             previous.showBack();
         });
         //getAllStyles().setBgColor(0x75ffd3);
+        ///////aziz
         tb.addMaterialCommandToSideMenu("Mon Profile", FontImage.MATERIAL_ANDROID,200, e -> {
-            new FormOffre(this).show();
+            hi.getToolbar().addCommandToRightBar("Back", null, (ActionListener) (ActionEvent evt) -> {
+            this.showBack();});
+            hi.show();
+            
         });   
+        //Jallouli houssem eddin
+        tb.addMaterialCommandToSideMenu("Nos Station", FontImage.MATERIAL_ADD_CHART,200, e -> {
+            f1.show();
+        }); 
+        tb.addMaterialCommandToSideMenu("Mes Reservation", FontImage.MATERIAL_ADD_CHART,200, (ActionListener) (ActionEvent e) -> {
+            new FormMesRV(FormAcceuil.this).show();
+            //fe.getToolbar().addCommandToRightBar("Back", null, (ActionListener) (ActionEvent evt) -> {
+            // this.showBack();});
+        }); 
+        //////Mouhamed
         tb.addMaterialCommandToSideMenu("Nos Evenement", FontImage.MATERIAL_ANDROID,200, e -> {
-            f1.show();
+            fee.show();
+            fee.getToolbar().addCommandToRightBar("Back", null, (ActionListener) (ActionEvent evt) -> {
+            this.showBack();});
         }); 
-        tb.addMaterialCommandToSideMenu("Nos Station", FontImage.MATERIAL_ANDROID,200, e -> {
-            f1.show();
-        }); 
-        tb.addMaterialCommandToSideMenu("Nos Velo", FontImage.MATERIAL_ANDROID,200, e -> {
-            new FormVelo(this).show();
-        }); 
+        //////rim
         tb.addMaterialCommandToSideMenu("Mes Reclamations", FontImage.MATERIAL_ANDROID,200, e -> {
             new FormReclamation(this).show();
         }); 
-        tb.addMaterialCommandToSideMenu("Mes Reservation", FontImage.MATERIAL_ANDROID,200, e -> {
-            f1.show();
+        //////sahar
+        tb.addMaterialCommandToSideMenu("Nos Velo", FontImage.MATERIAL_ANDROID,200, e -> {
+            new FormVelo(this).show();
         }); 
+
         tb.addMaterialCommandToSideMenu("Deconnexion", FontImage.MATERIAL_SETTINGS, e -> {
             previous.showBack();
         });
         f1.getToolbar().addCommandToRightBar("Back", null, (ActionListener) (ActionEvent evt) -> {
             this.showBack();
         });
-        //ImageViewer logo = new ImageViewer(theme.getImage("daraja.png"));
+        //ImageViewer logo = new ImageViewer(theme.getImage("aaaaaaaa.gif"));
         //this.add(logo);
         Button myButton = new Button("Click me!"); 
+        myButton.setUIID("LoginButton");
         add(myButton);
         myButton.addActionListener(e -> {
             Dialog.show("Salut", "Bienvenue Chez EcobikeGo!", "OK", null);

@@ -3,9 +3,19 @@
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
     <image name="1.jpg"  />
     <image name="130925.png"  />
+    <image name="aaaaaaaa.gif"  />
     <image name="back-command.png" type="multi"  />
     <image name="BackgroundRect.png" type="multi"  />
     <image name="border.png"  />
+    <image name="Button.borderBottom_1.png" type="multi"  />
+    <image name="Button.borderBottomL_1.png" type="multi"  />
+    <image name="Button.borderBottomR_1.png" type="multi"  />
+    <image name="Button.borderCenter_1.png" type="multi"  />
+    <image name="Button.borderLeft_1.png" type="multi"  />
+    <image name="Button.borderRight_1.png" type="multi"  />
+    <image name="Button.borderTop_1.png" type="multi"  />
+    <image name="Button.borderTopL_1.png" type="multi"  />
+    <image name="Button.borderTopR_1.png" type="multi"  />
     <image name="Button.dis#borderBottom_1.png" type="multi"  />
     <image name="Button.dis#borderBottomL_1.png" type="multi"  />
     <image name="Button.dis#borderBottomR_1.png" type="multi"  />
@@ -49,6 +59,7 @@
     <image name="duke.png" type="multi"  />
     <image name="gradient-overlay.png"  />
     <ui name="GUI 1" />
+    <image name="imgProf.jpg"  />
     <image name="login-background.jpg"  />
     <image name="maxresdefault (1).jpg"  />
     <image name="maxresdefault.jpg"  />
@@ -102,6 +113,18 @@
         <val key="BottomPaddingContainer.padUnit" value="0,0,2,0" />
         <val key="BottomPaddingContainer.padding" value="0,2,0,0" />
         <val key="BottomPaddingContainer.transparency" value="0" />
+        <val key="Button.align" value="4" />
+        <val key="Button.bgColor" value="cc00" />
+        <gradient key="Button.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
+        <val key="Button.bgType" value="0" />
+        <border key="Button.border" type="image" i1="Button.borderTop_1.png" i2="Button.borderBottom_1.png" i3="Button.borderLeft_1.png" i4="Button.borderRight_1.png" i5="Button.borderTopL_1.png" i6="Button.borderTopR_1.png" i7="Button.borderBottomL_1.png" i8="Button.borderBottomR_1.png" i9="Button.borderCenter_1.png" />
+        <val key="Button.fgColor" value="ffffff" />
+        <font key="Button.font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
+        <val key="Button.marUnit" value="2,2,2,2" />
+        <val key="Button.margin" value="1.0,1.0,1.0,1.0" />
+        <val key="Button.padUnit" value="2,2,2,2" />
+        <val key="Button.padding" value="1.0,1.0,1.0,1.0" />
+        <val key="Button.transparency" value="0" />
         <val key="CenterSubTitle.align" value="4" />
         <val key="CenterSubTitle.fgColor" value="ffffff" />
         <font key="CenterSubTitle.font" type="ttf" face="0" style="0" size="0" name="native:MainLight" family="native:MainLight" sizeSettings="3" actualSize="2.0" />
@@ -158,15 +181,15 @@
         <val key="Label.sel#transparency" value="0" />
         <val key="Label.transparency" value="0" />
         <val key="LoginButton.align" value="4" />
-        <val key="LoginButton.bgColor" value="4bc2ff" />
+        <val key="LoginButton.bgColor" value="9999" />
         <val key="LoginButton.fgColor" value="ffffff" />
         <font key="LoginButton.font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.5" />
         <val key="LoginButton.marUnit" value="2,2,2,2" />
-        <val key="LoginButton.margin" value="3,3,1,1" />
+        <val key="LoginButton.margin" value="3.0,3.0,1.0,1.0" />
         <val key="LoginButton.padUnit" value="2,2,2,2" />
-        <val key="LoginButton.padding" value="2,2,2,2" />
+        <val key="LoginButton.padding" value="2.0,2.0,2.0,2.0" />
         <val key="LoginButton.press#align" value="4" />
-        <val key="LoginButton.press#bgColor" value="ff00" />
+        <val key="LoginButton.press#bgColor" value="cc66" />
         <val key="LoginButton.press#fgColor" value="ffffff" />
         <font key="LoginButton.press#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.5" />
         <val key="LoginButton.press#marUnit" value="2,2,2,2" />
@@ -175,7 +198,7 @@
         <val key="LoginButton.press#padding" value="2.0,2.0,2.0,2.0" />
         <val key="LoginButton.press#transparency" value="255" />
         <val key="LoginButton.sel#align" value="4" />
-        <val key="LoginButton.sel#bgColor" value="cc00" />
+        <val key="LoginButton.sel#bgColor" value="9900" />
         <val key="LoginButton.sel#fgColor" value="ffffff" />
         <font key="LoginButton.sel#font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.5" />
         <val key="LoginButton.sel#marUnit" value="2,2,2,2" />
@@ -368,7 +391,7 @@
         <val key="WalkthruTab1.margin" value="0.0,0.0,0.0,0.0" />
         <val key="WalkthruTab1.padding" value="0.0,0.0,0.0,0.0" />
         <val key="WalkthruTab1.transparency" value="255" />
-        <val key="WalkthruTab2.bgColor" value="99ff99" />
+        <val key="WalkthruTab2.bgColor" value="cc6600" />
         <val key="WalkthruTab2.margin" value="0.0,0.0,0.0,0.0" />
         <val key="WalkthruTab2.padding" value="0.0,0.0,0.0,0.0" />
         <val key="WalkthruTab2.transparency" value="255" />
@@ -389,6 +412,8 @@
         <val key="WelcomeWhite.padding" value="0,0,0,0" />
         <val key="WelcomeWhite.transparency" value="0" />
         <val key="aaa.fgColor" value="ffffff" />
+        <val key="formtaswira.bgImage" value="maxresdefault (1).jpg" />
+        <val key="formtaswira.bgType" value="1" />
         <val key="press#transparency" value="0" />
         <val key="sel#transparency" value="0" />
         <val key="toolbar.align" value="4" />

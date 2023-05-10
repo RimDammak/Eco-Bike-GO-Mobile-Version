@@ -5,19 +5,15 @@
 package gui;
 
 import com.codename1.components.ImageViewer;
-import com.codename1.components.SpanLabel;
+import com.codename1.components.MultiButton;
 import com.codename1.ui.Button;
-import com.codename1.ui.Command;
-import com.codename1.ui.Dialog;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
-import com.codename1.ui.TextField;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.UIBuilder;
 import houssem.entities.Station;
 import houssem.services.ServiceStation;
+import java.util.ArrayList;
 
 
 /**
@@ -28,7 +24,7 @@ public class FormStation extends Form{
     public FormStation(){
         getAllStyles().setBgColor(0xebfff8);
         UIBuilder.registerCustomComponent("ImageViewer", ImageViewer.class);
-        setTitle("Gestion de Station");
+        setTitle("Nos de Stations");
         //UIBuilder uib1 =new UIBuilder();
         //setLayout(new FlowLayout(CENTER, CENTER));
         setLayout(BoxLayout.y());
@@ -36,39 +32,30 @@ public class FormStation extends Form{
 //        SpanLabel sp = new SpanLabel();
 //        sp.setText(ServiceStation.getInstance().getAllStations().toString());
 //        add(sp);
-//        
-        TextField tfName1 = new TextField("","nom station");
-        TextField tfName2 = new TextField("","ville");
-        TextField tfName3 = new TextField("","nbr");
-        Button btnValider = new Button("Add station");
-        
-        btnValider.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                if ((tfName1.getText().length()==0)||(tfName2.getText().length()==0)||(tfName3.getText().length()==0))
-                    Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
-                else
-                {
-                    try {
-                     
-                        Station s = new Station(tfName1.getText(),tfName2.getText(),    Integer.parseInt(tfName3.getText()));
-                        if( ServiceStation.getInstance().addStation(s))
-                        {
-                           Dialog.show("Success","Connection accepted",new Command("OK"));
-                        }else
-                            Dialog.show("ERROR", "Server error", new Command("OK"));
-                    } catch (NumberFormatException e) {
-                        Dialog.show("ERROR", "Status must be a number", new Command("OK"));
-                    }
-                    
-                }
-                
-                
-            }
+
+        Button btnValider = new Button("Ajouter une station");
+        btnValider.setUIID("LoginButton");
+        btnValider.addActionListener(e -> {
+            new FormAjoutStation(this).show();
         });
         
-        addAll(tfName1,tfName2,tfName3,btnValider);
+        addAll(btnValider);
         //getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack());
-          
+        ArrayList<Station> tasks = ServiceStation.getInstance().getAllStations();
+        for (Station t : tasks) {
+            addElement(t);
+            add(new Label(" "));
+        }  
     }
+    public void addElement(Station task) {
+        
+        MultiButton sp = new MultiButton(task.getNomStation());
+        sp.setTextLine2("Ville : "+task.getLocalisationStation());
+        sp.setTextLine3("Nombre de vélos disponible : "+task.getVeloStation());
+        sp.addActionListener(e->{
+            new FormDetailsStation(this,task.getIdStation()).show();
+        });
+        //setUIID("CompletedTasks");
+        add(sp);
+    } 
 }

@@ -4,6 +4,7 @@
  */
 package gui;
 
+import com.codename1.ui.Button;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -20,8 +21,11 @@ public class FormReclamation extends Form{
      public FormReclamation(Form previous) {
         setTitle("Liste Reclamations");
         setLayout(BoxLayout.y());
-
-         
+Button btnValider = new Button("Ajouter une reclamation");
+        btnValider.setUIID("LoginButton");
+         btnValider.addActionListener(e -> {
+            new FormAjoutReclamation(this).show();
+        });
         ArrayList<Reclamation> tasks = ServiceReclamation.getInstance().getAllTasks();
         for (Reclamation t : tasks) {
             addElement(t);
