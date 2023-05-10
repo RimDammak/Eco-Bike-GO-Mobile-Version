@@ -7,6 +7,7 @@ package gui;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -24,14 +25,12 @@ public class FormReclamation extends Form{
      public FormReclamation(Form previous) {
         setTitle("Liste Reclamations");
         setLayout(BoxLayout.y());
-        TextField etatRecherche = new TextField("", "Rrchercher par etat");
-        TextField typeRecherche = new TextField("", "Rrchercher par type");
+        TextField tfRech = new TextField("", "Rrchercher par etat");
         Button recherche = new Button("Rechercher");
 
         recherche.setUIID("LoginButton");
 
-        add(etatRecherche);
-        add(typeRecherche);
+        add(tfRech);
         add(recherche);
 
         Button btnValider = new Button("Ajouter une reclamation");
@@ -47,43 +46,18 @@ public class FormReclamation extends Form{
             ArrayList<Reclamation> newrec = new ArrayList<>();
             for (Reclamation r : tasks) {
 
-                if (r.getImage().toLowerCase().indexOf(typeRecherche.getText().toLowerCase()) != -1) {
-                    if (r.getEtatRec().toLowerCase().indexOf(etatRecherche.getText().toLowerCase()) != -1) {
-                        newrec.add(r);
-                    }
+                if (r.getImage().toLowerCase().indexOf(tfRech.getText().toLowerCase()) != -1) {
+                    newrec.add(r);
                 }
 
             }
 
             revalidate();
             removeAll();
-            add(etatRecherche);
-            add(typeRecherche);
+            add(tfRech);
             add(recherche);
             Display(newrec);
         });        
-        recherche.addActionListener((e) -> {
-            ArrayList<Reclamation> newrec = new ArrayList<>();
-            for (Reclamation r : tasks) {
-
-                if (r.getImage().toLowerCase().indexOf(typeRecherche.getText().toLowerCase()) != -1) {
-                    if (r.getEtatRec().toLowerCase().indexOf(etatRecherche.getText().toLowerCase()) != -1) {
-                        newrec.add(r);
-                    }
-                }
-
-            }
-
-            revalidate();
-            removeAll();
-            add(etatRecherche);
-            add(typeRecherche);
-            add(recherche);
-            Display(newrec);
-        });        
-        for (Reclamation t : tasks) {
-            // addElement(t);
-        }
 
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
 
@@ -116,7 +90,20 @@ public class FormReclamation extends Form{
                 btnRemoveReclamation.setUIID("LoginButton");
                 btnFindReclamation.setUIID("LoginButton");
 
-
+                btnRemoveReclamation.addActionListener((e) -> {
+                    try {
+                        Reclamation rec = new Reclamation(r.getIdRec());
+                        if (ServiceReclamation.getInstance().delete(rec)) {
+                            Dialog.show("Success", "Reclamation avec ID= " + rec.getIdRec() + " a ete supprimee avec succees", "OK", null);
+                            revalidate();
+                            new FormReclamation(this).show();
+                        } else {
+                            Dialog.show("ERROR", "Server error", "OK", null);
+                        }
+                    } catch (NumberFormatException err) {
+                        Dialog.show("ERROR", "Status must be a number", "OK", null);
+                    }
+                });
 
                 cnt2.add(btnRemoveReclamation);
                 cnt2.add(btnFindReclamation);

@@ -27,7 +27,7 @@ public class ServiceReclamation {
     public static ServiceReclamation instance = null;
     public boolean resultOK;
     private ConnectionRequest req;
-    private static final String URI="/reclamation_back";
+    private static final String URI="/reclamation_back/api";
     private ServiceReclamation() {
         req = new ConnectionRequest();
     }
@@ -106,12 +106,29 @@ public class ServiceReclamation {
         }
         return tasks;
     }
+    public boolean delete(Reclamation reclamation) {
+        String url = DataSource.BASE_URL + URI +"/delete/" + reclamation.getIdRec();
+        req.setUrl(url);
+        req.setPost(true);
 
+        req.setHttpMethod("DELETE");
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+        req.setHttpMethod("DELETE");
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
     public ArrayList<Reclamation> getAllTasks() {
         String url = DataSource.BASE_URL + URI + "/getall";
         req.setUrl(url);
         req.setPost(false);
-        
+        req.setHttpMethod("GET");
+
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

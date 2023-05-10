@@ -22,12 +22,16 @@ public class Reclamation {
         this.image = image;
         this.etatRec = etatRec;
     }
-
+    
     public Reclamation(String dateRec, String descriptionRec, String image, String etatRec) {
         this.dateRec = dateRec;
         this.descriptionRec = descriptionRec;
         this.image = image;
         this.etatRec = etatRec;
+    }
+    
+    public Reclamation(int idRec) {
+        this.idRec = idRec;
     }
 
     public int getIdRec() {
