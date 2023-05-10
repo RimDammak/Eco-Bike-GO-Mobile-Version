@@ -27,7 +27,7 @@ public class ServiceReclamation {
     public static ServiceReclamation instance = null;
     public boolean resultOK;
     private ConnectionRequest req;
-
+    private static final String URI="/reclamation_back";
     private ServiceReclamation() {
         req = new ConnectionRequest();
     }
@@ -108,7 +108,7 @@ public class ServiceReclamation {
     }
 
     public ArrayList<Reclamation> getAllTasks() {
-        String url = DataSource.BASE_URL + "/reclamation/getall";
+        String url = DataSource.BASE_URL + URI + "/getall";
         req.setUrl(url);
         req.setPost(false);
         
