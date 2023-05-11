@@ -27,16 +27,22 @@ public class FormReclamation extends Form{
         setLayout(BoxLayout.y());
         TextField tfRech = new TextField("", "Rrchercher par etat");
         Button recherche = new Button("Rechercher");
+        Button addReclamation = new Button("Add reclamation");
 
         recherche.setUIID("LoginButton");
 
         add(tfRech);
         add(recherche);
+        add(addReclamation);
+        addReclamation.setUIID("LoginButton");
+         addReclamation.addActionListener(e -> {
+            new FormReclamationAdd(this).show();
+        });
 
         Button btnValider = new Button("Ajouter une reclamation");
         btnValider.setUIID("LoginButton");
          btnValider.addActionListener(e -> {
-            new FormAjoutReclamation(this).show();
+            new FormReclamationAdd(this).show();
         });
         ArrayList<Reclamation> tasks = ServiceReclamation.getInstance().getAllTasks();
         Display(tasks);
@@ -89,6 +95,8 @@ public class FormReclamation extends Form{
                 Button btnFindReclamation = new Button("Get Reclamation");
                 btnRemoveReclamation.setUIID("LoginButton");
                 btnFindReclamation.setUIID("LoginButton");
+                
+                btnFindReclamation.addActionListener(e -> new FormReclamationDetails(this, r).show());
 
                 btnRemoveReclamation.addActionListener((e) -> {
                     try {
