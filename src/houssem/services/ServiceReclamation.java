@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  *
- * @author houss
+ * @author damak
  */
 public class ServiceReclamation {
     public ArrayList<Reclamation> tasks;
@@ -27,6 +27,7 @@ public class ServiceReclamation {
     public static ServiceReclamation instance = null;
     public boolean resultOK;
     private ConnectionRequest req;
+    private static final String URI = "/reclamation_back/api";
 
     private ServiceReclamation() {
         req = new ConnectionRequest();
@@ -38,25 +39,44 @@ public class ServiceReclamation {
         }
         return instance;
     }
-///////////////////////////////////////////////////////
-    public boolean addTask(Reclamation t) {
-        int id =  t.getIdRec();
-        String date = t.getDateRec();
-        String description = t.getDescriptionRec();
-        String reponse = t.getImage();
-        String type = t.getEtatRec();
-        
-        //String url = Statics.BASE_URL + "create?name=" + t.getName() + "&status=" + t.getStatus();
-        String url = DataSource.BASE_URL + "/create/" + id + "/" + id;
-                                       //create?status=0&name=houssem
-                                       //modified
+
+    ///////////////////////////////////////////////////////
+    // public void newUser(User p) {
+    //     connection = new ConnectionRequest();
+    //     connection.setInsecure(true);
+    //     this.connection.setUrl(BASE_URL + "/user/add");
+    //     this.connection.setHttpMethod("POST");
+
+    //     connection.addArgument("nom", p.getNomuser());
+    //     connection.addArgument("prenom", p.getPrenomuser());
+    //     connection.addArgument("date_naiss", p.getDatenaiss());
+    //     connection.addArgument("num_tel", p.getNumtel());
+    //     connection.addArgument("email", p.getEmail());
+    //     connection.addArgument("adresse", p.getAdresse());
+    //     connection.addArgument("img_user", p.getImguser());
+    //     connection.addArgument("mdp", p.getMdp());
+    //     connection.addArgument("role", p.getRole());
+    //     connection.addArgument("etat_compte", p.getEtatcompte() + "");
+
+    //     NetworkManager.getInstance().addToQueue(connection);
+    // }
+    public boolean add(Reclamation t) {
+        // String url = Statics.BASE_URL + "create?name=" + t.getName() + "&status=" +
+        // t.getStatus();
+        String url = DataSource.BASE_URL + URI + "/create";
+        // create?status=0&name=houssem
+        // modified
         req.setUrl(url);
         req.setPost(false);
+        req.setHttpMethod("POST");
         
+        req.addArgument("description", t.getDescriptionRec());
+        req.addArgument("etat", t.getEtatRec());
+
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                resultOK = req.getResponseCode() == 201; // Code HTTP 200 OK
                 req.removeResponseListener(this);
             }
         });
@@ -68,15 +88,14 @@ public class ServiceReclamation {
         try {
             tasks = new ArrayList<>();
             JSONParser j = new JSONParser();
-            Map<String, Object> tasksListJson
-                    = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+            Map<String, Object> tasksListJson = j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
 
-            List<Map< String, Object>> list = (List<Map< String, Object>>) tasksListJson.get("root");
-            for (Map< String, Object> obj : list) {
+            List<Map<String, Object>> list = (List<Map<String, Object>>) tasksListJson.get("root");
+            for (Map<String, Object> obj : list) {
                 Reclamation t = new Reclamation();
                 /////////////////////////////////////////////////
                 float id = Float.parseFloat(obj.get("idRec").toString());
-                t.setIdRec((int) id);  
+                t.setIdRec((int) id);
                 if (obj.get("dateRec") == null) {
                     t.setDateRec("null");
                 } else {
@@ -96,8 +115,8 @@ public class ServiceReclamation {
                     t.setEtatRec("null");
                 } else {
                     t.setEtatRec(obj.get("typeRec").toString());
-                } 
-                
+                }
+
                 tasks.add(t);
             }
 
@@ -107,11 +126,29 @@ public class ServiceReclamation {
         return tasks;
     }
 
+    public boolean delete(Reclamation reclamation) {
+        String url = DataSource.BASE_URL + URI + "/delete/" + reclamation.getIdRec();
+        req.setUrl(url);
+        req.setPost(true);
+
+        req.setHttpMethod("DELETE");
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+
     public ArrayList<Reclamation> getAllTasks() {
-        String url = DataSource.BASE_URL + "/reclamation/getall";
+        String url = DataSource.BASE_URL + URI + "/getall";
         req.setUrl(url);
         req.setPost(false);
-        
+        req.setHttpMethod("GET");
+
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
